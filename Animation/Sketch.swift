@@ -15,14 +15,14 @@ class Sketch {
     let canvas : Canvas
     
     // Declare any properties you need for your sketch below this comment, but before init()
-    var x = 0
+    var x = 1
     var s = 1
 
     // This runs once, equivalent to setup() in Processing
     init() {
         
-        // Create canvas object – specify size
-        canvas = Canvas(width: 700, height: 100)
+        // Create canvas object – specify size (size)
+        canvas = Canvas(width: 1200, height: 700)
         
         // The frame rate can be adjusted; the default is 60 fps
         canvas.framesPerSecond = 60
@@ -36,19 +36,27 @@ class Sketch {
         x = x + s
         
         // Bounce when hitting wall
-        if (x > canvas.width || x < 0) {
+        if (x*50 > canvas.width || x < 0) {
             s *= -1
         }
         
-        // Clear the background
-        canvas.drawShapesWithBorders = false
-        canvas.fillColor = Color(hue: 0, saturation: 0, brightness: 0, alpha: 100)
-        canvas.drawRectangle(bottomRightX: 0, bottomRightY: 0, width: canvas.width, height: canvas.height)
+    // Clear the background
+    canvas.drawShapesWithBorders = false
+    canvas.fillColor = Color(hue: Float(canvas.frameCount/2), saturation: 100, brightness: 100, alpha: 100)
+    canvas.drawRectangle(bottomRightX: 0, bottomRightY: 0, width: canvas.width, height: canvas.height)
         
-        // Draw a circle that moves across the screen
-        canvas.drawShapesWithBorders = false
-        canvas.fillColor = Color(hue: Float(canvas.frameCount), saturation: 80, brightness: 90, alpha: 100)
-        canvas.drawEllipse(centreX: x, centreY: canvas.height / 2, width: 25, height: 25)
+    // Draw a circle that moves across the screen
+    canvas.drawShapesWithBorders = false
+    canvas.fillColor = Color(hue: Float(canvas.frameCount*5), saturation: 80, brightness: 90, alpha: 100)
+    canvas.drawEllipse(centreX: x*50, centreY: canvas.height / 2, width: 100, height: 100)
+        
+        
+    canvas.fillColor = Color(hue: Float(canvas.frameCount*5), saturation: 99, brightness: 100, alpha: 100)
+    canvas.drawRectangle(bottomRightX: 0, bottomRightY: 0, width: 1200, height: 50)
+
+    canvas.fillColor = Color(hue: Float(canvas.frameCount*5), saturation: 99, brightness: 100, alpha: 100)
+    canvas.drawRectangle(bottomRightX: 0, bottomRightY: 650, width: 1200, height: 50)
+
         
     }
     
